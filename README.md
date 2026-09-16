@@ -1,3 +1,4 @@
 This project is a self-motivated project to help myself understand the data analysis of stock markets, and the financial knowledge behind how stock prices are investigated. SQL and Python pipelines are developed to demonstrate a data analysis on real market data on the core instruments in the Hong Kong equity market.
 
-The historical data of three stocks - HSBC (0005.HK), Tencent (0700.HK), and HKEX (0388.HK) over the past ~5.5 years (2020-2026) are downloaded alongside the data of Hang Seng Index (HSI). 
+The historical data of three stocks - HSBC (0005.HK), Tencent (0700.HK), and HKEX (0388.HK) over the past ~6.5 years (2020-2026) are studied alongside the data of Hang Seng Index (HSI). The OHLCV data of these four instruments are then put through a full analytical pipeline, which includes ingestion, cleaning, relational storage, and SQL-driven data analysis. In addition to understanding what each quantifiable figure represents during data analysis, the results are also compared to the real market events, where the fluctuations can be interpreted as a result of these events.
+
