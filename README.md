@@ -27,4 +27,22 @@ The historical data of three stocks - HSBC (0005.HK), Tencent (0700.HK), and HKE
 
 ---
 
+## Analytical Methodology
 
+When is pipeline in SQL is built, one of the key principle is that the pipeline can be safely re-run when new data is looked at. Therefore, each query creates a new table by `CREATE OR REPLACE VIEW` to avoid name clashes.
+
+This section explains the analytical processes of this project with the window functions used in SQL to investigate the aforementioned datasets.
+
+__Daily returns__
+
+The percentage change between the closing prices of a particular day and the previous day. The `LAG()` function is used to access the closing price of the previous day. This forms the basis of everything that we use in this project, as (why)
+
+__Volatility__
+
+__Moving Averages__
+
+__Cross Detection__
+
+__Correlation__
+
+__Beta__
