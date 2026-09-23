@@ -44,6 +44,7 @@ By calculating the sample standard deviation `STDDEV_SAMP()` over a 20-day rolli
 The most volatile periods of these stocks are identified, then compared to market events in the past to find how these events affected the stock market.
 
 __Moving Averages__
+
 The `AVG()` window function in SQL allows us to compute the moving average of a stock price. In this project, the 50-day and 200-day moving averages are both calculated. One caveat when formulating the moving averages is that the reliable averages start only on the 50th and 200th day respectively, since the averages before that do not have sufficient data points. Therefore, a `ROW_NUMBER()` filter is used together with `WHERE rn>=50` to purposefully remove misleading data points, which will also be explained in __Cross Detection__. The same technique is used in volatility for the first 20 days of the dataset, but has a significantly smaller effect on the results.
 
 __Cross Detection__
