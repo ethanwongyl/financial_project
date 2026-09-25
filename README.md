@@ -45,13 +45,25 @@ The most volatile periods of these stocks are identified, then compared to marke
 
 __Moving Averages__
 
-The `AVG()` window function in SQL allows us to compute the moving average of a stock price. In this project, the 50-day and 200-day moving averages are both calculated. One caveat when formulating the moving averages is that the reliable averages start only on the 50th and 200th day respectively, since the averages before that do not have sufficient data points. Therefore, a `ROW_NUMBER()` filter is used together with `WHERE rn>=50` to purposefully remove misleading data points, which will also be explained in __Cross Detection__. The same technique is used in volatility for the first 20 days of the dataset, but has a significantly smaller effect on the results.
+The `AVG()` window function in SQL allows us to compute the moving average of a stock price. In this project, the 50-day and 200-day moving averages are both calculated. One caveat when formulating the moving averages is that the reliable averages start only on the 50th and 200th day respectively, since the averages before that do not have sufficient data points to return a correct 50-/200-day average. Therefore, a `ROW_NUMBER()` filter is used together with `WHERE rn>=50` to purposefully remove misleading data points, which will also be explained in __Cross Detection__. The same technique is used in volatility for the first 20 days of the dataset, but has a significantly smaller effect on the results.
 
 __Cross Detection__
 
+The 'Golden Cross' is detected when the 50-day average surpass the 200-day average, and 'Death Cross' vice versa. The function `LAG()` has been used to compare the two averages on two consecutive days. As mentioned in the __Moving Average__ section, the unreliable averages could result in a false detection. The filter that was used when formulating the moving averages successfully masked one false 'Death Cross' signal in March 2020 out. The stock price, 50-day average, 200-day moving average, and the cross detections are also plotted on a graph.
+
 __Correlation__
 
+The correlation between different prices shows how these prices move with one another. All four tickers are compared in a loop of `CORR()` window function to create a correlation table. A correlation between two stocks ranges from -1 (exact opposite direction) to +1 (exact same movement), and we can compare the correlation between different stocks and the Hang Seng Index to investigate the characteristics of different stocks.
+
 __Beta__
+
+The beta $$\beta$$ is often compared between a stock and the corresponding stock market index, and it reflects how much a fluctuation in the stock market is amplified in a particular stock price. It is calculated using the covariance between the stock returns and the market return, divided by the variance of the market return. At $\beta > 1$, the stock price amplifies a market fluctuation; at $\beta = 1$, the stock price moves in line with the market; at $0 < \beta < 1$, the stock is more defensive and moves less than a market fluctuation; when $\beta$ is negative, a stock moves opposite to the direction of the market fluctuation. 
+
+In this project, the beta between all three stocks are compared with the Hang Seng Index. The results can tell us the systematic risk of a stock has, which comes from the fluctuation of the market itself, after excluding all the risks independent to individual companies. 
+
+__Rolling Correlation and Rolling Beta__
+
+The rolling correlation and beta with a 60-day window is also calculated to compare how different stocks performed against the HSI over the 6.5-year period. They are plotted side-to-side with the market level and the average attained from the previous sub-sections. A window of 60 days is used to ensure that the correlation, covariance, and variance have sufficient data to be taken into account; and that the time period is also short enough so that it would not smoothen out the fluctuations of the market.
 
 ---
 
